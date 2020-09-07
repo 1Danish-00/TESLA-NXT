@@ -978,6 +978,8 @@ async def _(event):
     except Exception as e:
         mentions += " " + str(e) + "\n"
     await event.edit(mentions)
+
+
 @register(outgoing=True, pattern=r"\.admemes ?(.*)")
 async def handler(event):
     if event.fwd_from:
