@@ -21,6 +21,8 @@ load_dotenv("config.env")
 
 STORAGE = (lambda n: Storage(Path("data") / n))
 
+UNLOCKED_CHATS = os.environ.get("UNLOCKED_CHATS") or []
+
 # Bot Logs setup:
 CONSOLE_LOGGER_VERBOSE = sb(os.environ.get(
     "CONSOLE_LOGGER_VERBOSE") or "False")
