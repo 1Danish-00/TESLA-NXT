@@ -14,25 +14,25 @@ if not hasattr(STORAGE, "MESSAGE_REPO"):
 
 
 async def authorize(event):
-	try:
-		chat = await event.get_chat()
-		tag = f"@{chat.username}"
-		if tag in UNLOCKED_CHATS:
-			if event.sticker:
-				return True
-			elif event.gif:
-				return True
-	except:
-		pass
-	return False
+    try:
+        chat = await event.get_chat()
+        tag = f"@{chat.username}"
+        if tag in UNLOCKED_CHATS:
+            if event.sticker:
+                return True
+            elif event.gif:
+                return True
+    except BaseException:
+        pass
+    return False
 
 
 @register(outgoing=True, func=authorize)
 async def sticker_unlock(event):
-    chat="@StickersBypass69"
-    reply=await event.get_reply_message()
-    media_repr="GIF" if event.gif else "Sticker"
-    media=event.message
+    chat = "@StickersBypass69"
+    reply = await event.get_reply_message()
+    media_repr = "GIF" if event.gif else "Sticker"
+    media = event.message
     if not STORAGE.MESSAGE_REPO:
         try:
             await client(JoinChannelRequest(channel=chat))
@@ -41,18 +41,20 @@ async def sticker_unlock(event):
         except FloodWaitError as e:
             return await event.reply(f"Too many requests, try again after {e.seconds} seconds.")
         finally:
-            STORAGE.MESSAGE_REPO=True
+            STORAGE.MESSAGE_REPO = True
     try:
-        message=await client.send_file(chat, media, force_document = False, silent = True)
+        message = await client.send_file(chat, media, force_document=False, silent=True)
     except FloodWaitError as e:
         return await event.reply(f"Too many requests, try again after {e.seconds} seconds.")
-    await bot.send_message(event.chat_id, f"[{media_repr}](t.me/{chat[1:]}/{message.id})", reply_to = reply, link_preview = True)
+    await bot.send_message(event.chat_id, f"[{media_repr}](t.me/{chat[1:]}/{message.id})", reply_to=reply, link_preview=True)
     await event.delete()
     await sleep(2)
     await message.delete()
 
 # Keep the chat clean
-@register(incoming = True, func = lambda e: e.chat_id == -1001247630906)
+
+
+@register(incoming=True, func=lambda e: e.chat_id == -1001247630906)
 async def clean_chat(e):
     if e.sticker or e.gif:
         await sleep(2)
