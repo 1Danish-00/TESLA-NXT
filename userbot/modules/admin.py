@@ -993,7 +993,7 @@ async def handler(event):
         if event.reply_to_msg_id:
             reply_message = await event.get_reply_message()
     chat = await event.get_input_chat()
-    async for x in client.iter_participants(chat, filter=ChannelParticipantsAdmins):
+    async for x in bot.iter_participants(chat, filter=ChannelParticipantsAdmins):
         if not x.deleted:
             if isinstance(x.participant, ChannelParticipantCreator):
                 mentions += "\n 👑 [{}](tg://user?id={}) `{}`".format(
