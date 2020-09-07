@@ -59,7 +59,7 @@ def get_sticker(text):
         draw.text(text=" ", fill=(255, 255, 255),
                   xy=(cords_x + 1, cords_y + 1), font=font)
         if x_mode:
-            cords_x += len(char)+spacing
+            cords_x += len(char) + spacing
         cords_y += len(char) + spacing
     img.save(sticker, "WEBP")
     return result
