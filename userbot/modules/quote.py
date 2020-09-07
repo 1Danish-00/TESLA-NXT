@@ -14,7 +14,7 @@ from userbot import (
 from userbot.events import register
 
 
-sticker = f"{ENV.TEMP_DOWNLOAD_DIRECTORY}/quotify.webp"
+sticker = f"{TEMP_DOWNLOAD_DIRECTORY}/quotify.webp"
 
 
 @register(outgoing=True, pattern=r"\.quote ?(.*)")
