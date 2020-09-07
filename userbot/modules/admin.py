@@ -999,7 +999,7 @@ async def handler(event):
                 mentions += "\n 👑 [{}](tg://user?id={}) `{}`".format(
                     x.first_name, x.id, x.id)
     mentions += "\n"
-    async for x in client.iter_participants(chat, filter=ChannelParticipantsAdmins):
+    async for x in bot.iter_participants(chat, filter=ChannelParticipantsAdmins):
         if not x.deleted:
             if isinstance(x.participant, ChannelParticipantAdmin):
                 mentions += "\n ⚜️ [{}](tg://user?id={}) `{}`".format(
