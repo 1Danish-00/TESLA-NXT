@@ -73,7 +73,7 @@ async def killdabot(event):
 async def bot_community(community):
     """ For .community command, just returns OG Paperplane's group link. """
     await community.edit(
-        "Join ElytrA8's awesome userbot community: @PROJECT_TESLA")
+        "Join ElytrA8's awesome userbot community: @PROJECTTESLA")
 
 
 @register(outgoing=True, pattern="^.support$")
